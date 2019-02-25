@@ -48,8 +48,10 @@ $(document).ready(function(){
 				$('#name').val('');
 				$('#description').val('');
 				listarTareas();
+				alertify.success('Success!');
 			},
 			error:function(data){
+				alertify.error('Error!');
 				console.log('error: ',data);
 			}
 		});
@@ -101,6 +103,7 @@ $(document).ready(function(){
 		let id = $(elemento).attr('taskID');
 		$.post('php/task-delete.php',{id:id},function(response){
 			listarTareas();
+			alertify.success('Task eliminated!');		
 		});
 	});
 	// Eliminar tarea
