@@ -15,11 +15,14 @@ $(document).ready(function(){
 				data: {'search':search},
 				success:function(data){
 					var tasks = JSON.parse(data);
-					// console.log(tasks);
+					var template = '';
+					
+					// tasks.forEach(task => {
+					// 	template += '<li>'+task.name+'</li>'
+					// });
+
 					tasks.forEach(task => {
-						template += `<li>
-						${task.name}
-						</li>`
+						template += `<li>${task.name}</li>` //concatenando con comillas de interpolacion
 					});
 					
 					$('#ul-search').html(template);
