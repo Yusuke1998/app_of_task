@@ -22,6 +22,7 @@
 				<div class="card my-3">
 					<div class="card-body">
 						<form id="task-form">
+							<input type="hidden" name="id_editar" id="id_editar">
 							<div class="form-group">
 								<input type="text" name="name" id="name" placeholder="Name of task" class="form-control">
 							</div>
@@ -45,6 +46,7 @@
 							<th>#</th>
 							<th>Name</th>
 							<th>Description</th>
+							<th colspan="3">Action</th>
 						</tr>
 					</thead>
 					<tbody id="task-tabla-body"></tbody>

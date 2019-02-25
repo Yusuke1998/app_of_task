@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	console.log('jquery working!');
 	listarTareas();
+	let editar = false;
 
 	// Buscador
 	$('#div-search').hide();
@@ -36,8 +37,9 @@ $(document).ready(function(){
 	$('#task-form').submit(function(e){
 		e.preventDefault();
 		var form = $('#task-form').serialize();
+		let url = editar ? 'php/task-edit.php' : 'php/task-add.php';
 		$.ajax({
-			url:'php/task-add.php',
+			url:url,
 			type:'post',
 			datatype:'json',
 			data:form,
@@ -59,23 +61,47 @@ $(document).ready(function(){
 		$.post('php/task-list.php',function(data){
 			var tasks = JSON.parse(data);
 			var tabla = $('#task-tabla-body');
+			var template = '';
 			tasks.forEach(task=>{
-				// tabla.append('<tr><td>'+task.id+'</td><td>'+task.name+'</td><td>'+task.description+'</td></tr>');
-				tabla.append(`<tr>
+				template+= `<tr taskID="${task.id}">
 								<td>${task.id}</td>
 								<td>${task.name}</td>
 								<td>${task.description}</td>
-							</tr>`);
+								<td class="btn-group">
+									<button class="editarID btn btn-sm btn-warning">Editar</button>
+									<button class="eliminarID btn btn-sm btn-danger">Eliminar</button>
+								</td>
+							</tr>`;
 			});
+			tabla.html(template);
 		});
 	}
 	// Listar tareas
 
 	// Editar tarea
-
+	$(document).on('click','.editarID',function(e){
+		e.preventDefault();
+		let elemento = $(this)[0].parentElement.parentElement;
+		let id = $(elemento).attr('taskID');
+		// console.log('editar el id ',id);
+		$.post('php/task-search-id.php',{id},function(data){
+			var task = JSON.parse(data);
+			$('#id_editar').val(task.id);
+			$('#name').val(task.name);
+			$('#description').val(task.description);
+			editar = true;
+		});
+	});
 	// Editar tarea
 
 	// Eliminar tarea
-
+	$(document).on('click','.eliminarID',function(e){
+		e.preventDefault();
+		let elemento = $(this)[0].parentElement.parentElement;
+		let id = $(elemento).attr('taskID');
+		$.post('php/task-delete.php',{id:id},function(response){
+			listarTareas();
+		});
+	});
 	// Eliminar tarea
 });
