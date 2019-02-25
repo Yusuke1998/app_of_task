@@ -11,7 +11,7 @@
 		<a href="" class="navbar-brand" title="App Task">App Task</a>
 		<ul class="navbar-nav ml-auto">
 			<form class="form-inline my-2 my-lg-0">
-				<input type="search" name="search" placeholder="Search you task" class="form-control mr-sm-2">
+				<input type="search" name="search" id="search" placeholder="Search you task" class="form-control mr-sm-2">
 				<button type="submit" class="btn btn-success">Search</button>
 			</form>
 		</ul>
@@ -36,6 +36,9 @@
 				</div>
 			</div>
 			<div class="col-md-7">
+				<div class="col-md-12 my-3 bg-primary text-white" id="div-search">
+					<ul id="ul-search"></ul>
+				</div>
 				<table class="table table-bordered my-3">
 					<thead>
 						<tr>

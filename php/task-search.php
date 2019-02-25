@@ -1,0 +1,12 @@
+<?php 
+	require_once('database.php');
+	extract($_POST);
+	
+	$query = "SELECT * FROM task WHERE name LIKE '$search%'";
+	$data = $coneccion->query($query);
+
+	while ($row = mysqli_fetch_array($data)) {
+		$array = ['id'=>$row['id'],'name'=>$row['name'],'description'=>$row['description']];
+		echo json_encode($array);
+	}
+?>
