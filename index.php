@@ -26,7 +26,7 @@
 								<input type="text" name="name" id="name" placeholder="Name of task" class="form-control">
 							</div>
 							<div class="form-group">
-								<textarea name="" id="description" class="form-control" placeholder="Description of task"></textarea>
+								<textarea name="description" id="description" class="form-control" placeholder="Description of task"></textarea>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary btn-block">Save</button>
@@ -39,7 +39,7 @@
 				<div class="col-md-12 my-3 bg-primary text-white" id="div-search">
 					<ul id="ul-search"></ul>
 				</div>
-				<table class="table table-bordered my-3">
+				<table id="task-tabla" class="table table-bordered my-3">
 					<thead>
 						<tr>
 							<th>#</th>
@@ -47,13 +47,7 @@
 							<th>Description</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>data</td>
-							<td>data</td>
-							<td>data</td>
-						</tr>
-					</tbody>
+					<tbody id="task-tabla-body"></tbody>
 				</table>
 			</div>
 		</div>	
